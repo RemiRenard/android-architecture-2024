@@ -3,10 +3,6 @@ package renard.remi.androidarchitecture2024.data.repository
 import io.realm.kotlin.Realm
 import io.realm.kotlin.UpdatePolicy
 import io.realm.kotlin.ext.query
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.forEach
-import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.onEach
 import renard.remi.androidarchitecture2024.data.db.UserGithubRealm
 import renard.remi.androidarchitecture2024.data.model.dto.UserGithubDto
 import renard.remi.androidarchitecture2024.data.network.ApiService
@@ -43,11 +39,15 @@ class GithubRepositoryImpl @Inject constructor(
             val user = apiService.getGithubUser(username)
             saveRealmGithubUser(user)
             Result.Success(user.toUserGithub())
-        } catch (e: HttpException) {
-            when (e.code()) {
-                404 -> Result.Error(DataError.Network.NOT_FOUND)
-                500 -> Result.Error(DataError.Network.SERVER_ERROR)
-                else -> Result.Error(DataError.Network.UNKNOWN)
+        } catch (error: Exception) {
+            if (error is HttpException) {
+                when (error.code()) {
+                    404 -> Result.Error(DataError.Network.NOT_FOUND)
+                    500 -> Result.Error(DataError.Network.SERVER_ERROR)
+                    else -> Result.Error(DataError.Network.UNKNOWN)
+                }
+            } else {
+                Result.Error(DataError.Network.NO_INTERNET)
             }
         }
     }
