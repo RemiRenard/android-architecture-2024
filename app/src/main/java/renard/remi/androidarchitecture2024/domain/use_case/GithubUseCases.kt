@@ -6,7 +6,11 @@ data class GithubUseCases(
     private val githubRepository: GithubRepository,
     private val validateUsername: ValidateUsername,
 ) {
-    suspend fun getGithubUser(username: String?) = githubRepository.getGithubUser(username ?: "")
+    suspend fun getGithubUser(forceRefresh: Boolean, username: String?) =
+        githubRepository.getGithubUser(
+            forceRefresh,
+            username ?: ""
+        )
 
     fun validateUsername(username: String?): ValidationResult = validateUsername.execute(username)
 }

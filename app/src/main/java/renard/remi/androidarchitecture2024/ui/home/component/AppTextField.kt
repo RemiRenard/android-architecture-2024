@@ -63,22 +63,10 @@ fun AppTextField(
                 }
             ),
             keyboardActions = KeyboardActions(onDone = onDone),
-            minLines = minLines,
-            colors = OutlinedTextFieldDefaults.colors(
-                cursorColor = MaterialTheme.colorScheme.onSurface,
-                focusedBorderColor = MaterialTheme.colorScheme.onSurface,
-                focusedLabelColor = MaterialTheme.colorScheme.onSurface,
-                focusedPlaceholderColor = MaterialTheme.colorScheme.onSurface,
-                focusedLeadingIconColor = MaterialTheme.colorScheme.onSurface,
-                focusedTrailingIconColor = MaterialTheme.colorScheme.onSurface,
-                focusedPrefixColor = MaterialTheme.colorScheme.onSurface,
-                focusedSuffixColor = MaterialTheme.colorScheme.onSurface,
-            )
+            minLines = minLines
         )
         Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(end = 2.dp, top = 1.dp),
+            modifier = modifier.padding(end = 2.dp, top = 1.dp),
             horizontalArrangement = if (isError) Arrangement.SpaceBetween else Arrangement.End,
             verticalAlignment = Alignment.CenterVertically
         ) {

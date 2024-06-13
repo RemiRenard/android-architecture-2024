@@ -5,9 +5,11 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Button
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -46,35 +48,41 @@ fun HomeScreenContent(
         }
     }
 
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(horizontal = 12.dp, vertical = 50.dp),
-        verticalArrangement = Arrangement.Top,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Text(text = "Welcome ${args.username}")
-        Spacer(modifier = Modifier.size(10.dp))
-        AppTextField(
-            modifier = Modifier,
-            value = state.usernameGithub,
-            label = "Github username",
-            isError = state.usernameGithubError?.isNotBlank() == true,
-            errorMessage = state.usernameGithubError,
-            onValueChange = { viewModel.onEvent(HomeEventFromUI.ChangeUsername(it)) }
-        )
-        Spacer(modifier = Modifier.size(30.dp))
-        Button(
-            onClick = {
-                viewModel.onEvent(HomeEventFromUI.SubmitGithubUser)
-            }
+    Scaffold { paddingValues ->
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(paddingValues),
+            verticalArrangement = Arrangement.Top,
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text(text = "Find Github profile")
-        }
-        Spacer(modifier = Modifier.size(30.dp))
-        state.userGithub?.let {
-            Text(text = "Name : ${it.username}")
-            Text(text = "Bio : ${it.bio}")
+            Spacer(modifier = Modifier.size(20.dp))
+            Text(text = "Welcome ${args.username}")
+            Spacer(modifier = Modifier.size(10.dp))
+            AppTextField(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 12.dp),
+                value = state.usernameGithub,
+                label = "Github username",
+                isError = state.usernameGithubError?.isNotBlank() == true,
+                errorMessage = state.usernameGithubError,
+                onValueChange = { viewModel.onEvent(HomeEventFromUI.ChangeUsername(it)) }
+            )
+            Spacer(modifier = Modifier.size(30.dp))
+            Button(
+                modifier = Modifier.fillMaxWidth(0.5F),
+                onClick = {
+                    viewModel.onEvent(HomeEventFromUI.SubmitGithubUser)
+                }
+            ) {
+                Text(text = "Find Github profile")
+            }
+            Spacer(modifier = Modifier.size(30.dp))
+            state.userGithub?.let {
+                Text(text = "Name : ${it.username}")
+                Text(text = "Bio : ${it.bio}")
+            }
         }
     }
 }

@@ -6,5 +6,8 @@ import renard.remi.androidarchitecture2024.domain.model.UserGithub
 
 interface GithubRepository {
 
-    suspend fun getGithubUser(username: String): Result<UserGithub, DataError.Network>
+    suspend fun getGithubUser(
+        forceRefresh: Boolean,
+        username: String
+    ): Result<UserGithub, DataError.Network>
 }

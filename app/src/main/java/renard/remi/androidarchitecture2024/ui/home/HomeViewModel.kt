@@ -27,12 +27,13 @@ class HomeViewModel @Inject constructor(
 
     fun onEvent(event: HomeEventFromUI) {
         when (event) {
-            is HomeEventFromUI.ChangeUsername -> state = state.copy(usernameGithub = event.username)
+            is HomeEventFromUI.ChangeUsername -> validateUsernameField(event.username)
             is HomeEventFromUI.SubmitGithubUser -> getGithubUser(state.usernameGithub)
         }
     }
 
-    private fun validateUsernameField(): Boolean {
+    private fun validateUsernameField(username: String): Boolean {
+        state = state.copy(usernameGithub = username)
         val usernameResult = useCases.validateUsername(state.usernameGithub)
         if (!usernameResult.successful) {
             usernameResult.errorMessage?.let {
@@ -45,11 +46,11 @@ class HomeViewModel @Inject constructor(
     }
 
     private fun getGithubUser(username: String) {
-        if (!validateUsernameField()) {
+        if (state.usernameGithubError != null) {
             return
         }
         viewModelScope.launch {
-            when (val result = useCases.getGithubUser(username)) {
+            when (val result = useCases.getGithubUser(false, username)) {
                 is Result.Error -> {
                     state = state.copy(userGithub = null)
                     val errorMessage = result.error.asUiText()

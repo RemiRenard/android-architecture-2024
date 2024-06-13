@@ -9,14 +9,17 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
 import dagger.hilt.android.AndroidEntryPoint
+import io.realm.kotlin.Realm
 import renard.remi.androidarchitecture2024.ui.auth.AuthScreen
 import renard.remi.androidarchitecture2024.ui.auth.AuthScreenContent
 import renard.remi.androidarchitecture2024.ui.home.HomeScreen
 import renard.remi.androidarchitecture2024.ui.home.HomeScreenContent
 import renard.remi.androidarchitecture2024.ui.theme.AndroidArchitecture2024Theme
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()

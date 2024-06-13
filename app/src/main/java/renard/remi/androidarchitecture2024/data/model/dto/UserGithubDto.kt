@@ -13,6 +13,7 @@ data class UserGithubDto(
         id = id,
         username = login,
         avatarUrl = avatar_url,
+        reposUrl = repos_url,
         bio = bio
     )
 }

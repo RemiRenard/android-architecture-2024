@@ -5,19 +5,19 @@ coreKtx = "1.13.1"
 junit = "4.13.2"
 junitVersion = "1.1.5"
 espressoCore = "3.5.1"
-lifecycleRuntimeKtx = "2.8.1"
+lifecycleRuntimeKtx = "2.8.2"
 activityCompose = "1.9.0"
-composeBom = "2024.05.00"
-composeNavigation = "2.8.0-beta02"
+composeBom = "2024.06.00"
+composeNavigation = "2.8.0-beta03"
 serialization = "1.6.3"
-collectionImmutable = "0.3.7"
-realmDatabase = "1.11.0"
+realmDatabase = "2.0.0"
 hiltVersion = "2.51.1"
 hiltNavigationComposeVersion = "1.2.0"
 kspVersion = "2.0.0-1.0.22"
 retrofitVersion = "2.11.0"
 okHttpVersion = "4.12.0"
 dataStoreVersion = "1.1.1"
+realmGradlePlugin = "10.18.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -36,7 +36,6 @@ androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
 navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "composeNavigation" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "serialization" }
-kotlinx-collections-immutable = { module = "org.jetbrains.kotlinx:kotlinx-collections-immutable", version.ref = "collectionImmutable" }
 realm = { module = "io.realm.kotlin:library-base", version.ref = "realmDatabase" }
 hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hiltVersion" }
 hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hiltNavigationComposeVersion" }
@@ -53,4 +52,4 @@ compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 kotlinAndroidKsp = { id = "com.google.devtools.ksp", version.ref = "kspVersion" }
 hiltAndroid = { id = "com.google.dagger.hilt.android", version.ref = "hiltVersion" }
-
+realm-plugin = { id = "io.realm.kotlin", version.ref = "realmDatabase" }
