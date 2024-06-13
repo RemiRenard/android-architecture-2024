@@ -46,7 +46,7 @@ class HomeViewModel @Inject constructor(
     }
 
     private fun getGithubUser(username: String) {
-        if (state.usernameGithubError != null) {
+        if (!validateUsernameField(username)) {
             return
         }
         viewModelScope.launch {
