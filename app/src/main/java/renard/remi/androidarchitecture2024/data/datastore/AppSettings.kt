@@ -4,5 +4,6 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class AppSettings(
-    val useDynamicColors: Boolean = true
+    val useDynamicColors: Boolean = true,
+    val userToken: String = ""
 )

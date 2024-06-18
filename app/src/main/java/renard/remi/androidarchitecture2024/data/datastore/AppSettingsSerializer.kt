@@ -13,7 +13,8 @@ object AppSettingsSerializer : Serializer<AppSettings> {
 
     override val defaultValue: AppSettings
         get() = AppSettings(
-            useDynamicColors = true
+            useDynamicColors = true,
+            userToken = ""
         )
 
     override suspend fun readFrom(input: InputStream): AppSettings {

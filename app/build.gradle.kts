@@ -2,10 +2,10 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.compose.compiler)
-    alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.kotlinAndroidKsp)
     alias(libs.plugins.hiltAndroid)
     alias(libs.plugins.realm.plugin)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 android {
@@ -73,6 +73,7 @@ dependencies {
     implementation(libs.datastore)
     implementation(libs.hilt.android)
     implementation(libs.hilt.navigation.compose)
+    implementation(libs.biometric)
     // The first time you build this project you should use implementation instead of ksp,
     // then rebuild with ksp
     ksp(libs.hilt.compiler)

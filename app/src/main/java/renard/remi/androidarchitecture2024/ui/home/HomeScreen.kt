@@ -24,7 +24,7 @@ import renard.remi.androidarchitecture2024.ui.home.component.AppTextField
 
 @Serializable
 data class HomeScreen(
-    val username: String?
+    val username: String? = null
 )
 
 @Composable
