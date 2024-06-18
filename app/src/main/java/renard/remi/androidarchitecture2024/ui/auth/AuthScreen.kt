@@ -22,15 +22,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.fragment.app.FragmentActivity
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import kotlinx.serialization.Serializable
-import renard.remi.androidarchitecture2024.extension.dataStore
-import renard.remi.androidarchitecture2024.ui.home.HomeEventFromVm
-import renard.remi.androidarchitecture2024.ui.utils.BiometricPromptManager.BiometricResult
-import renard.remi.androidarchitecture2024.ui.utils.BiometricPromptManager.BiometricResult.AuthenticationNotSet
 import renard.remi.androidarchitecture2024.ui.home.HomeScreen
 import renard.remi.androidarchitecture2024.ui.utils.BiometricPromptManager
+import renard.remi.androidarchitecture2024.ui.utils.BiometricPromptManager.BiometricResult
 
 @Serializable
 object AuthScreen
@@ -76,7 +72,7 @@ fun AuthScreenContent(
                     Toast.makeText(context, "Authentication failed", Toast.LENGTH_SHORT).show()
                 }
 
-                AuthenticationNotSet -> {
+                BiometricResult.AuthenticationNotSet -> {
                     Toast.makeText(context, "Authentication not set", Toast.LENGTH_SHORT).show()
                     if (Build.VERSION.SDK_INT >= 30) {
                         val enrollIntent = Intent(Settings.ACTION_BIOMETRIC_ENROLL).apply {
